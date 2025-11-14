@@ -1,0 +1,47 @@
+# Dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# Build output
+dist
+build
+
+# Testing
+coverage
+.nyc_output
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# CI/CD
+.github
+
+# Documentation
+*.md
+!README.md
+
+# Misc
+.prettierrc
+.eslintrc.js
+test
+*.spec.ts

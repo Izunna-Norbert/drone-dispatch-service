@@ -1,98 +1,174 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Drone Dispatch Service
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A REST API service for managing drone medication deliveries built with Nodejs and TypeScript.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Prerequisites
 
-## Description
+- Node.js (v18+)
+- npm or yarn
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Project setup
+## Installation
 
 ```bash
-$ yarn install
+# Install dependencies
+npm install
+# or
+yarn install
 ```
 
-## Compile and run the project
+## Running the Application
 
 ```bash
-# development
-$ yarn run start
-
-# watch mode
-$ yarn run start:dev
-
-# production mode
-$ yarn run start:prod
+# Development mode
+npm run start:dev
+# or
+yarn start:dev
 ```
 
-## Run tests
+## Using Docker
+# Build and run the container
 
 ```bash
-# unit tests
-$ yarn run test
+docker-compose up --build -d
 
-# e2e tests
-$ yarn run test:e2e
+# View logs
+docker-compose logs -f
 
-# test coverage
-$ yarn run test:cov
+# Stop container
+docker-compose down
 ```
 
-## Deployment
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+The API will be available at `http://localhost:3000/api`
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## Testing
 
 ```bash
-$ yarn install -g @nestjs/mau
-$ mau deploy
+# Run unit tests
+npm test
+# or
+yarn test
+
+# Test coverage
+npm run test:cov
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### Run a specific test by name
 
-## Resources
+```bash
+yarn test --testNamePattern="weight exceeds limit"
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+## Load Postman Collection
+You can use Postman to quickly test the Drone Dispatch Service API.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Steps:
+- Open Postman.
+- Click Import in the top-left corner.
+- Select File and choose the provided Postman collection JSON file.
+- Click Import.
+- Once imported, you will see a folder with all API requests.
+- Update the environment variable or URLs if needed, e.g., http://localhost:3000/api.
+- Run requests individually or use Collection Runner to test all endpoints.
 
-## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## API Endpoints
 
-## Stay in touch
+### Register a Drone
+```bash
+POST /api/drones
+Content-Type: application/json
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+{
+  "serialNumber": "DRONE-011",
+  "model": "Lightweight",
+  "weightLimit": 200,
+  "batteryCapacity": 100
+}
+```
 
-## License
+### Load Drone with Medications
+```bash
+POST /api/drones/:serialNumber/load
+Content-Type: application/json
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+{
+  "medications": [
+    {
+      "name": "Aspirin-500mg",
+      "weight": 50,
+      "code": "ASP_500",
+      "image": "https://example.com/aspirin.jpg"
+    }
+  ]
+}
+```
+
+### Get Available Drones
+```bash
+GET /api/drones/available
+```
+
+### Check Loaded Medications
+```bash
+GET /api/drones/:serialNumber/medications
+```
+
+### Check Battery Level
+```bash
+GET /api/drones/:serialNumber/battery
+```
+
+### Get All Drones
+```bash
+GET /api/drones
+```
+
+## Business Rules
+
+- Drone models: Lightweight (200g), Middleweight (300g), Cruiserweight (400g), Heavyweight (500g)
+- Battery must be ≥25% to load medications
+- Total weight cannot exceed drone's weight limit
+- Medication names: only letters, numbers, `-`, `_`
+- Medication codes: only uppercase letters, numbers, `_`
+
+## Features
+
+- ✅ Register and manage drones
+- ✅ Load medications with weight validation
+- ✅ Battery level monitoring (prevents loading below 25%)
+- ✅ Automatic battery audit logging every 5 minutes
+- ✅ Check available drones
+- ✅ Pre-loaded test data (10 drones)
+
+## Database
+
+Uses SQLite in-memory database with 10 pre-loaded drones for testing.
+
+## Project Structure
+
+```
+src/modules
+├── drones/           # Drone management
+├── medications/      # Medication entities
+├── battery-audit/    # Battery monitoring
+├── database/seeds/   # Test data seeder
+src/
+└── common/           # Shared enums and exceptions
+```
+
+## Example Test
+
+```bash
+# Load a drone
+curl -X POST http://localhost:3000/api/drones/DRONE-002/load \
+  -H "Content-Type: application/json" \
+  -d '{
+    "medications": [{
+      "name": "Aspirin",
+      "weight": 50,
+      "code": "ASP_500",
+      "image": "https://example.com/aspirin.jpg"
+    }]
+  }'
+```

@@ -1,0 +1,794 @@
+{
+	"info": {
+		"_postman_id": "f3924535-0fa3-4008-bd0e-7573b05f8ea1",
+		"name": "Drone Dispatch",
+		"description": "# 📄 Get started here\n\nThis template contains a boilerplate for documentation that you can quickly customize and reuse.\n\n## 🔖 How to use this template\n\n- Replace the content given brackets (()) with your API's details.\n- Tips are formatted in `codespan` - feel free to read and remove them.\n    \n\n---\n\n`Start with a brief overview of what your API offers.`\n\nThe ((product name)) provides many API products, tools, and resources that enable you to ((add product value here)).\n\n`You can also list the APIs you offer, link to the relevant pages, or do both in this section.`\n\n## **Getting started guide**\n\n`List the steps or points required to start using your APIs. Make sure to cover everything required to reach success with your API as quickly as possible.`\n\nTo start using the ((add APIs here)), you need to -\n\n`The points given below are from The Postman API's documentation. You can reference it to write your own getting started guide.`\n\n- You must use a valid API Key to send requests to the API endpoints. You can get your API key from Postman's [integrations dashboard](https://go.postman.co/settings/me/api-keys).\n- The API has [rate and usage limits](https://learning.postman.com/docs/developer/postman-api/postman-api-rate-limits/).\n- The API only responds to HTTPS-secured communications. Any requests sent via HTTP return an HTTP 301 redirect to the corresponding HTTPS resources.\n- The API returns request responses in JSON format. When an API request returns an error, it is sent in the JSON response as an error key.\n    \n\n## Authentication\n\n`Add details on the authorization keys/tokens required, steps that cover how to get them, and the relevant error codes.`\n\nThe ((product name)) API uses ((add your API's authorization type)) for authentication.\n\n`The details given below are from the Postman API's documentation. You can reference it to write your own authentication section.`\n\nPostman uses API keys for authentication. You can generate a Postman API key in the [API keys](https://postman.postman.co/settings/me/api-keys) section of your Postman account settings.\n\nYou must include an API key in each request to the Postman API with the X-Api-Key request header.\n\n### Authentication error response\n\nIf an API key is missing, malformed, or invalid, you will receive an HTTP 401 Unauthorized response code.\n\n## Rate and usage limits\n\n`Use this section to cover your APIs' terms of use. Include API limits, constraints, and relevant error codes, so consumers understand the permitted API usage and practices.`\n\n`The example given below is from The Postman API's documentation. Use it as a reference to write your APIs' terms of use.`\n\nAPI access rate limits apply at a per-API key basis in unit time. The limit is 300 requests per minute. Also, depending on your plan, you may have usage limits. If you exceed either limit, your request will return an HTTP 429 Too Many Requests status code.\n\nEach API response returns the following set of headers to help you identify your use status:\n\n| Header | Description |\n| --- | --- |\n| `X-RateLimit-Limit` | The maximum number of requests that the consumer is permitted to make per minute. |\n| `X-RateLimit-Remaining` | The number of requests remaining in the current rate limit window. |\n| `X-RateLimit-Reset` | The time at which the current rate limit window resets in UTC epoch seconds. |\n\n### 503 response\n\nAn HTTP `503` response from our servers indicates there is an unexpected spike in API access traffic. The server is usually operational within the next five minutes. If the outage persists or you receive any other form of an HTTP `5XX` error, [contact support](https://support.postman.com/hc/en-us/requests/new/).\n\n### **Need some help?**\n\n`Add links that customers can refer to whenever they need help.`\n\nIn case you have questions, go through our tutorials ((link to your video or help documentation here)). Or visit our FAQ page ((link to the relevant page)).\n\nOr you can check out our community forum, there’s a good chance our community has an answer for you. Visit our developer forum ((link to developer forum)) to review topics, ask questions, and learn from others.\n\n`You can also document or add links to libraries, code examples, and other resources needed to make a request.`",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37603851",
+		"_collection_link": "https://winter-trinity-7132.postman.co/workspace/Team-Workspace~7b1e3e4f-8085-4a7c-826e-b6fbe0b4ff2d/collection/37603851-f3924535-0fa3-4008-bd0e-7573b05f8ea1?action=share&source=collection_link&creator=37603851"
+	},
+	"item": [
+		{
+			"name": "Register Drone",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"serialNumber\": \"DRONE-NEW-011\",\n    \"model\": \"Middleweight\",\n    \"weightLimit\": 300,\n    \"batteryCapacity\": 85\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/drones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"drones"
+					],
+					"query": [
+						{
+							"key": "workspace",
+							"value": "{{workspaceId}}",
+							"description": "Optional. A workspace ID in which to create the collection.\n\nIf you do not include this query parameter, the system creates the collection in your \"My Workspace\" workspace.",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Creates a collection using the [Postman Collection v2 schema format](https://schema.postman.com/json/collection/v2.1.0/docs/index.html). Include a `collection` object in the request body that contains the following required properties:\n\n*   `info` — An **object** that contains the following properties:\n    *   `name` — A **string** value that contains the collection's name.\n    *   `schema` — A **string** that contains a URL to the collection's schema. For example, the `https://schema.getpostman.com/collection/v1` URL.\n*   `item` — An **object** that contains the HTTP request and response information.\n    *   `request` — An **object** that contains the collection's request information. For a complete list of values, refer to the `definitions.request` entry in the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json). If you pass an empty object for this value, the system defaults to an untitled GET request.\n\n**Note:**\n\n*   For a complete list of available property values for this endpoint, use the following references available in the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json):\n    *   `info` object — Use the `definitions.info` entry.\n    *   `item` object — Use the `definitions.items` entry.\n*   For all other possible values, refer to the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json)."
+			},
+			"response": [
+				{
+					"name": "Register Drone",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"serialNumber\": \"DRONE-NEW-011\",\n    \"model\": \"Middleweight\",\n    \"weightLimit\": 300,\n    \"batteryCapacity\": 85\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/drones",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"drones"
+							],
+							"query": [
+								{
+									"key": "workspace",
+									"value": "{{workspaceId}}",
+									"description": "Optional. A workspace ID in which to create the collection.\n\nIf you do not include this query parameter, the system creates the collection in your \"My Workspace\" workspace.",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "231"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e7-EW51/dVsPLRiVfelIoO/ugrE+ag\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 14 Nov 2025 10:22:31 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"ee4afcd6-018a-4cc3-8395-ae56d9846a11\",\n    \"serialNumber\": \"DRONE-NEW-011\",\n    \"model\": \"Middleweight\",\n    \"weightLimit\": 300,\n    \"batteryCapacity\": 85,\n    \"state\": \"IDLE\",\n    \"createdAt\": \"2025-11-14T10:22:31.000Z\",\n    \"updatedAt\": \"2025-11-14T10:22:31.000Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Load Drone",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"medications\": [\n      {\n        \"name\": \"Light-Medication\",\n        \"weight\": 50,\n        \"code\": \"LIGHT_MED_50\",\n        \"image\": \"https://example.com/medications/light.jpg\"\n      }\n    ]\n  }"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/drones/:serial/load",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"drones",
+						":serial",
+						"load"
+					],
+					"variable": [
+						{
+							"key": "serial",
+							"value": "DRONE-004"
+						}
+					]
+				},
+				"description": "Creates a collection using the [Postman Collection v2 schema format](https://schema.postman.com/json/collection/v2.1.0/docs/index.html). Include a `collection` object in the request body that contains the following required properties:\n\n*   `info` — An **object** that contains the following properties:\n    *   `name` — A **string** value that contains the collection's name.\n    *   `schema` — A **string** that contains a URL to the collection's schema. For example, the `https://schema.getpostman.com/collection/v1` URL.\n*   `item` — An **object** that contains the HTTP request and response information.\n    *   `request` — An **object** that contains the collection's request information. For a complete list of values, refer to the `definitions.request` entry in the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json). If you pass an empty object for this value, the system defaults to an untitled GET request.\n\n**Note:**\n\n*   For a complete list of available property values for this endpoint, use the following references available in the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json):\n    *   `info` object — Use the `definitions.info` entry.\n    *   `item` object — Use the `definitions.items` entry.\n*   For all other possible values, refer to the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json)."
+			},
+			"response": [
+				{
+					"name": "Load Drone",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"medications\": [\n      {\n        \"name\": \"Light-Medication\",\n        \"weight\": 50,\n        \"code\": \"LIGHT_MED_50\",\n        \"image\": \"https://example.com/medications/light.jpg\"\n      }\n    ]\n  }"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/drones/:serial/load",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"drones",
+								":serial",
+								"load"
+							],
+							"variable": [
+								{
+									"key": "serial",
+									"value": "DRONE-004"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "539"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"21b-dzti8Jb5MpfLR2AMgnkEAjbB5uw\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 14 Nov 2025 10:36:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Drone loaded successfully\",\n    \"drone\": {\n        \"id\": \"6c581d8b-aa40-4348-980e-a0f1780fab83\",\n        \"serialNumber\": \"DRONE-004\",\n        \"model\": \"Middleweight\",\n        \"weightLimit\": 300,\n        \"batteryCapacity\": 75,\n        \"state\": \"LOADED\",\n        \"medications\": [\n            {\n                \"id\": \"96ea9e25-4d9d-4709-b1f4-78e269dff6ae\",\n                \"name\": \"Light-Medication\",\n                \"weight\": 50,\n                \"code\": \"LIGHT_MED_50\",\n                \"image\": \"https://example.com/medications/light.jpg\",\n                \"droneId\": \"6c581d8b-aa40-4348-980e-a0f1780fab83\",\n                \"createdAt\": \"2025-11-14T10:36:11.000Z\"\n            }\n        ],\n        \"createdAt\": \"2025-11-14T10:29:08.000Z\",\n        \"updatedAt\": \"2025-11-14T10:36:11.000Z\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all drones",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/drones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"drones"
+					]
+				},
+				"description": "Gets information about a collection. For a complete list of this endpoint's possible values, use the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json)."
+			},
+			"response": [
+				{
+					"name": "Get all drones",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/drones",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"drones"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3419"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d5b-QRVc2DH2Rwz6P8F5eOUulWE8Gvo\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 14 Nov 2025 10:15:10 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"6e87f671-e5e6-4460-91b4-7c7f9fb98e4c\",\n        \"serialNumber\": \"DRONE-005\",\n        \"model\": \"Cruiserweight\",\n        \"weightLimit\": 400,\n        \"batteryCapacity\": 95,\n        \"state\": \"IDLE\",\n        \"medications\": [],\n        \"createdAt\": \"2025-11-14T10:14:38.000Z\",\n        \"updatedAt\": \"2025-11-14T10:14:38.000Z\"\n    },\n    {\n        \"id\": \"666eefa5-a700-4648-9b1c-8c3dce10c6de\",\n        \"serialNumber\": \"DRONE-006\",\n        \"model\": \"Cruiserweight\",\n        \"weightLimit\": 400,\n        \"batteryCapacity\": 60,\n        \"state\": \"IDLE\",\n        \"medications\": [],\n        \"createdAt\": \"2025-11-14T10:14:38.000Z\",\n        \"updatedAt\": \"2025-11-14T10:14:38.000Z\"\n    },\n    {\n        \"id\": \"dd8f2fdf-6411-4b9e-816c-f89437ee6127\",\n        \"serialNumber\": \"DRONE-007\",\n        \"model\": \"Heavyweight\",\n        \"weightLimit\": 500,\n        \"batteryCapacity\": 100,\n        \"state\": \"IDLE\",\n        \"medications\": [],\n        \"createdAt\": \"2025-11-14T10:14:38.000Z\",\n        \"updatedAt\": \"2025-11-14T10:14:38.000Z\"\n    },\n    {\n        \"id\": \"563b7c9a-ffe7-480d-9652-488a2a6f7aa6\",\n        \"serialNumber\": \"DRONE-008\",\n        \"model\": \"Heavyweight\",\n        \"weightLimit\": 500,\n        \"batteryCapacity\": 85,\n        \"state\": \"IDLE\",\n        \"medications\": [],\n        \"createdAt\": \"2025-11-14T10:14:38.000Z\",\n        \"updatedAt\": \"2025-11-14T10:14:38.000Z\"\n    },\n    {\n        \"id\": \"9fc1afa9-d7f0-4aa4-8eaf-fff62897659a\",\n        \"serialNumber\": \"DRONE-009\",\n        \"model\": \"Lightweight\",\n        \"weightLimit\": 200,\n        \"batteryCapacity\": 20,\n        \"state\": \"IDLE\",\n        \"medications\": [],\n        \"createdAt\": \"2025-11-14T10:14:38.000Z\",\n        \"updatedAt\": \"2025-11-14T10:14:38.000Z\"\n    },\n    {\n        \"id\": \"58118f58-2f66-4f35-b6b3-7d0786b4f9bc\",\n        \"serialNumber\": \"DRONE-010\",\n        \"model\": \"Middleweight\",\n        \"weightLimit\": 300,\n        \"batteryCapacity\": 50,\n        \"state\": \"DELIVERING\",\n        \"medications\": [\n            {\n                \"id\": \"324a7dcb-352f-4fa0-b5b6-8f30f39e2e00\",\n                \"name\": \"Insulin\",\n                \"weight\": 100,\n                \"code\": \"INSULIN_100\",\n                \"image\": \"https://example.com/medications/insulin.jpg\",\n                \"droneId\": \"58118f58-2f66-4f35-b6b3-7d0786b4f9bc\",\n                \"createdAt\": \"2025-11-14T10:14:38.000Z\"\n            },\n            {\n                \"id\": \"4314ee9a-ff30-4d77-ba63-e74bd320bad2\",\n                \"name\": \"Amoxicillin\",\n                \"weight\": 75,\n                \"code\": \"AMOX_500\",\n                \"image\": \"https://example.com/medications/amoxicillin.jpg\",\n                \"droneId\": \"58118f58-2f66-4f35-b6b3-7d0786b4f9bc\",\n                \"createdAt\": \"2025-11-14T10:14:38.000Z\"\n            }\n        ],\n        \"createdAt\": \"2025-11-14T10:14:38.000Z\",\n        \"updatedAt\": \"2025-11-14T10:14:38.000Z\"\n    },\n    {\n        \"id\": \"fb70c48e-a3d1-42fc-bc4b-b31fa88fa274\",\n        \"serialNumber\": \"DRONE-001\",\n        \"model\": \"Lightweight\",\n        \"weightLimit\": 200,\n        \"batteryCapacity\": 100,\n        \"state\": \"LOADED\",\n        \"medications\": [\n            {\n                \"id\": \"5f5167ad-5bbb-459b-b4cf-5227013a56dd\",\n                \"name\": \"Aspirin-500mg\",\n                \"weight\": 50,\n                \"code\": \"ASP_500\",\n                \"image\": \"https://example.com/medications/aspirin.jpg\",\n                \"droneId\": \"fb70c48e-a3d1-42fc-bc4b-b31fa88fa274\",\n                \"createdAt\": \"2025-11-14T10:14:38.000Z\"\n            },\n            {\n                \"id\": \"998233a7-c699-4a55-a556-32cf1e91d467\",\n                \"name\": \"Vitamin-C\",\n                \"weight\": 30,\n                \"code\": \"VIT_C_1000\",\n                \"image\": \"https://example.com/medications/vitamin-c.jpg\",\n                \"droneId\": \"fb70c48e-a3d1-42fc-bc4b-b31fa88fa274\",\n                \"createdAt\": \"2025-11-14T10:14:38.000Z\"\n            }\n        ],\n        \"createdAt\": \"2025-11-14T10:14:37.000Z\",\n        \"updatedAt\": \"2025-11-14T10:14:38.000Z\"\n    },\n    {\n        \"id\": \"209caf10-4eac-44a9-bead-3b4c2626a4b5\",\n        \"serialNumber\": \"DRONE-002\",\n        \"model\": \"Lightweight\",\n        \"weightLimit\": 200,\n        \"batteryCapacity\": 80,\n        \"state\": \"IDLE\",\n        \"medications\": [],\n        \"createdAt\": \"2025-11-14T10:14:37.000Z\",\n        \"updatedAt\": \"2025-11-14T10:14:37.000Z\"\n    },\n    {\n        \"id\": \"0fad7d5e-8614-47d7-aa73-6f8c96b0d5b1\",\n        \"serialNumber\": \"DRONE-003\",\n        \"model\": \"Middleweight\",\n        \"weightLimit\": 300,\n        \"batteryCapacity\": 90,\n        \"state\": \"IDLE\",\n        \"medications\": [],\n        \"createdAt\": \"2025-11-14T10:14:37.000Z\",\n        \"updatedAt\": \"2025-11-14T10:14:37.000Z\"\n    },\n    {\n        \"id\": \"f39e0451-950f-4054-8733-5a658977636b\",\n        \"serialNumber\": \"DRONE-004\",\n        \"model\": \"Middleweight\",\n        \"weightLimit\": 300,\n        \"batteryCapacity\": 75,\n        \"state\": \"IDLE\",\n        \"medications\": [],\n        \"createdAt\": \"2025-11-14T10:14:37.000Z\",\n        \"updatedAt\": \"2025-11-14T10:14:37.000Z\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Available drones",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/drones/available",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"drones",
+						"available"
+					]
+				},
+				"description": "Gets information about a collection. For a complete list of this endpoint's possible values, use the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json)."
+			},
+			"response": [
+				{
+					"name": "Available drones",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/drones/available",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"drones",
+								"available"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1227"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4cb-KhnWrjY/4IpHiaT03N7IRCH0U+s\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 14 Nov 2025 10:35:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"6c581d8b-aa40-4348-980e-a0f1780fab83\",\n        \"serialNumber\": \"DRONE-004\",\n        \"model\": \"Middleweight\",\n        \"weightLimit\": 300,\n        \"batteryCapacity\": 75,\n        \"state\": \"IDLE\",\n        \"medications\": [],\n        \"createdAt\": \"2025-11-14T10:29:08.000Z\",\n        \"updatedAt\": \"2025-11-14T10:29:08.000Z\"\n    },\n    {\n        \"id\": \"c4a8b536-ea09-494d-8679-4f99ba3bd56b\",\n        \"serialNumber\": \"DRONE-005\",\n        \"model\": \"Cruiserweight\",\n        \"weightLimit\": 400,\n        \"batteryCapacity\": 95,\n        \"state\": \"IDLE\",\n        \"medications\": [],\n        \"createdAt\": \"2025-11-14T10:29:08.000Z\",\n        \"updatedAt\": \"2025-11-14T10:29:08.000Z\"\n    },\n    {\n        \"id\": \"fd2c267e-3993-4dcc-9a15-f72de524ed5e\",\n        \"serialNumber\": \"DRONE-006\",\n        \"model\": \"Cruiserweight\",\n        \"weightLimit\": 400,\n        \"batteryCapacity\": 60,\n        \"state\": \"IDLE\",\n        \"medications\": [],\n        \"createdAt\": \"2025-11-14T10:29:08.000Z\",\n        \"updatedAt\": \"2025-11-14T10:29:08.000Z\"\n    },\n    {\n        \"id\": \"1874f9ed-bbb8-491c-89c8-4720edcc0e5a\",\n        \"serialNumber\": \"DRONE-007\",\n        \"model\": \"Heavyweight\",\n        \"weightLimit\": 500,\n        \"batteryCapacity\": 100,\n        \"state\": \"IDLE\",\n        \"medications\": [],\n        \"createdAt\": \"2025-11-14T10:29:08.000Z\",\n        \"updatedAt\": \"2025-11-14T10:29:08.000Z\"\n    },\n    {\n        \"id\": \"d649c387-1883-4476-b122-01c99bd63cd1\",\n        \"serialNumber\": \"DRONE-008\",\n        \"model\": \"Heavyweight\",\n        \"weightLimit\": 500,\n        \"batteryCapacity\": 85,\n        \"state\": \"IDLE\",\n        \"medications\": [],\n        \"createdAt\": \"2025-11-14T10:29:08.000Z\",\n        \"updatedAt\": \"2025-11-14T10:29:08.000Z\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "FindOne",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/drones/:serial",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"drones",
+						":serial"
+					],
+					"variable": [
+						{
+							"key": "serial",
+							"value": "DRONE-002"
+						}
+					]
+				},
+				"description": "Gets information about a collection. For a complete list of this endpoint's possible values, use the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json)."
+			},
+			"response": [
+				{
+					"name": "FindOne",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/drones/:serial",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"drones",
+								":serial"
+							],
+							"variable": [
+								{
+									"key": "serial",
+									"value": "DRONE-002"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "490"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1ea-xrtgcQfRXRyL+kfrDzdlXYBqczA\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 14 Nov 2025 10:35:14 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"366993fb-8809-45e2-9981-213687a6c353\",\n    \"serialNumber\": \"DRONE-002\",\n    \"model\": \"Lightweight\",\n    \"weightLimit\": 200,\n    \"batteryCapacity\": 80,\n    \"state\": \"LOADED\",\n    \"medications\": [\n        {\n            \"id\": \"9bfffb0b-80fb-4cb7-9514-664bb8db97a8\",\n            \"name\": \"Light-Medication\",\n            \"weight\": 50,\n            \"code\": \"LIGHT_MED_50\",\n            \"image\": \"https://example.com/medications/light.jpg\",\n            \"droneId\": \"366993fb-8809-45e2-9981-213687a6c353\",\n            \"createdAt\": \"2025-11-14T10:30:33.000Z\"\n        }\n    ],\n    \"createdAt\": \"2025-11-14T10:29:08.000Z\",\n    \"updatedAt\": \"2025-11-14T10:30:33.000Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Drone Medications",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/drones/:serial/medications",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"drones",
+						":serial",
+						"medications"
+					],
+					"variable": [
+						{
+							"key": "serial",
+							"value": "DRONE-002"
+						}
+					]
+				},
+				"description": "Gets information about a collection. For a complete list of this endpoint's possible values, use the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json)."
+			},
+			"response": [
+				{
+					"name": "Get Drone Medications",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/drones/:serial/medications",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"drones",
+								":serial",
+								"medications"
+							],
+							"variable": [
+								{
+									"key": "serial",
+									"value": "DRONE-002"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "307"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"133-ZrvAl0xHh7SCxqGPy/WGcEwmy8M\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 14 Nov 2025 10:35:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"serialNumber\": \"DRONE-002\",\n    \"medications\": [\n        {\n            \"id\": \"9bfffb0b-80fb-4cb7-9514-664bb8db97a8\",\n            \"name\": \"Light-Medication\",\n            \"weight\": 50,\n            \"code\": \"LIGHT_MED_50\",\n            \"image\": \"https://example.com/medications/light.jpg\",\n            \"droneId\": \"366993fb-8809-45e2-9981-213687a6c353\",\n            \"createdAt\": \"2025-11-14T10:30:33.000Z\"\n        }\n    ],\n    \"totalWeight\": 50\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Drone Battery Level",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/drones/:serial/battery",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"drones",
+						":serial",
+						"battery"
+					],
+					"variable": [
+						{
+							"key": "serial",
+							"value": "DRONE-002"
+						}
+					]
+				},
+				"description": "Gets information about a collection. For a complete list of this endpoint's possible values, use the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json)."
+			},
+			"response": [
+				{
+					"name": "Get Drone Battery",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/drones/:serial/battery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"drones",
+								":serial",
+								"battery"
+							],
+							"variable": [
+								{
+									"key": "serial",
+									"value": "DRONE-002"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "66"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"42-Km92Zd9W43ApVFlQO7fOwVIrtDA\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 14 Nov 2025 10:35:51 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"serialNumber\": \"DRONE-002\",\n    \"batteryCapacity\": 80,\n    \"state\": \"LOADED\"\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "X-API-Key",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://farming-simulator.pstmn.io"
+		}
+	]
+}

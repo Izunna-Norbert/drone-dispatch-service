@@ -128,6 +128,7 @@ export class DronesService {
 
     // Update drone state to LOADED
     drone.state = DroneState.LOADED;
+    drone.medications = medications;
     await this.droneRepository.save(drone);
 
     // Return updated drone with medications
