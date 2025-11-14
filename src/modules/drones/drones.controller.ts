@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   Post,
+  Put,
   Body,
   Param,
   HttpCode,
@@ -9,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { DronesService } from './drones.service';
 import { CreateDroneDto } from './dto/create-drone.dto';
+import { UpdateDroneDto } from './dto/update-drone.dto';
 import { LoadMedicationDto } from './dto/load-medication.dto';
 
 @Controller('api/drones')
@@ -34,6 +36,14 @@ export class DronesController {
   @Get(':serialNumber')
   findOne(@Param('serialNumber') serialNumber: string) {
     return this.dronesService.findOne(serialNumber);
+  }
+
+  @Put(':serialNumber')
+  update(
+    @Param('serialNumber') serialNumber: string,
+    @Body() updateDroneDto: UpdateDroneDto,
+  ) {
+    return this.dronesService.update(serialNumber, updateDroneDto);
   }
 
   @Post(':serialNumber/load')

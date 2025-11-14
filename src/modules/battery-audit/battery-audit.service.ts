@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { BatteryAudit } from './entities/battery-audit.entity';
 import { DronesService } from '../drones/drones.service';
+import { DroneState } from 'src/common/enums/drone-state.enum';
 
 @Injectable()
 export class BatteryAuditService {
@@ -36,6 +37,15 @@ export class BatteryAuditService {
         if (drone.batteryCapacity < 25) {
           this.logger.warn(
             `⚠️  Drone ${drone.serialNumber} has low battery: ${drone.batteryCapacity}%`,
+          );
+        }
+
+        if (drone.batteryCapacity < 10 && drone.state === DroneState.DELIVERING) {
+          // in real system we'd call a drone command
+          // just update state
+          // Update drone state to RETURNING if battery is critically low during delivery
+          this.logger.warn(
+            `🚨 Drone ${drone.serialNumber} battery critically low (${drone.batteryCapacity}%) during delivery. Forcing RETURNING state.`,
           );
         }
       }

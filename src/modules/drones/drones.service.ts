@@ -8,6 +8,7 @@ import { Repository } from 'typeorm';
 import { Drone } from './entities/drone.entity';
 import { Medication } from '../medications/entities/medication.entity';
 import { CreateDroneDto } from './dto/create-drone.dto';
+import { UpdateDroneDto } from './dto/update-drone.dto';
 import { LoadMedicationDto } from './dto/load-medication.dto';
 import { DroneState } from '../../common/enums/drone-state.enum';
 import { BusinessException } from '../../common/exceptions/business.exception';
@@ -61,6 +62,34 @@ export class DronesService {
     }
 
     return drone;
+  }
+
+  async update(
+    serialNumber: string,
+    updateDroneDto: UpdateDroneDto,
+  ): Promise<Drone> {
+    const drone = await this.findOne(serialNumber);
+
+    // Update only provided fields
+    if (updateDroneDto.model !== undefined) {
+      drone.model = updateDroneDto.model;
+    }
+
+    if (updateDroneDto.weightLimit !== undefined) {
+      // Validate that new weight limit is not less than current load
+      if (updateDroneDto.weightLimit < drone.currentLoad) {
+        throw new BusinessException(
+          `Cannot update weight limit: new limit ${updateDroneDto.weightLimit}gr is less than current load ${drone.currentLoad}gr`,
+        );
+      }
+      drone.weightLimit = updateDroneDto.weightLimit;
+    }
+
+    if (updateDroneDto.batteryCapacity !== undefined) {
+      drone.batteryCapacity = updateDroneDto.batteryCapacity;
+    }
+
+    return this.droneRepository.save(drone);
   }
 
   async findAvailable(): Promise<Drone[]> {
